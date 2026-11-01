@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mitchell Gondwe | Computer &amp; Electronic Engineer</title>
+  <meta name="description" content="Mitchell Gondwe, final-year BEng Computer and Electronic Engineering student at North-West University. Telecommunications &amp; IoT, embedded systems &amp; instrumentation, and industrial control." />
+  <meta name="author" content="Mitchell Gondwe" />
+  <meta property="og:title" content="Mitchell Gondwe | Computer &amp; Electronic Engineer" />
+  <meta property="og:description" content="Hardware-first engineer: telecommunications &amp; IoT, embedded instrumentation, and industrial control." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b1220'/><text x='50%' y='56%' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-weight='700' font-size='28' fill='%2322d3ee'>MG</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#hero" class="nav__brand" id="nav-brand" aria-label="Mitchell Gondwe home">
+        <span class="nav__logo">MG</span>
+        <span class="nav__name">Mitchell Gondwe</span>
+      </a>
+      <nav class="nav__links" id="nav-links" aria-label="Primary">
+        <a href="#about" class="nav__link" id="nav-about">About</a>
+        <a href="#focus" class="nav__link" id="nav-focus">Focus</a>
+        <a href="#projects" class="nav__link" id="nav-projects">Projects</a>
+        <a href="#experience" class="nav__link" id="nav-experience">Experience</a>
+        <a href="#education" class="nav__link" id="nav-education">Education</a>
+        <a href="#skills" class="nav__link" id="nav-skills">Skills</a>
+        <a href="#contact" class="nav__link" id="nav-contact">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <a href="MITCHELL GONDWE CV.pdf" class="btn btn--primary btn--sm" id="nav-cv-btn" download>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+          CV
+        </a>
+        <button class="icon-btn nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <div class="hero__text reveal">
+          <span class="status-pill" id="status-pill"><span class="status-dot"></span>Final-year BEng &middot; Open to graduate roles</span>
+          <h1 class="hero__title">
+            Mitchell Gondwe
+            <span class="hero__role">Computer &amp; Electronic Engineer</span>
+          </h1>
+          <p class="hero__lead">
+            I build where software meets <strong>physical systems</strong>: RF &amp; cellular IoT hardware,
+            embedded control loops, and real-time vibration monitoring for industrial motors.
+          </p>
+          <div class="hero__typed mono" aria-live="polite">
+            <span class="prompt">&gt;</span> <span id="typed-text"></span><span class="caret">_</span>
+          </div>
+          <div class="hero__cta">
+            <a href="#projects" class="btn btn--primary" id="hero-projects-btn">Explore projects</a>
+            <button class="btn btn--ghost" id="hero-print-btn" type="button">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg>
+              Print / Save CV as PDF
+            </button>
+          </div>
+          <ul class="hero__meta mono">
+            <li>Roodepoort, Gauteng, ZA</li>
+            <li>North-West University</li>
+            <li>English &middot; Afrikaans</li>
+          </ul>
+        </div>
+
+        <!-- Live "condition monitor" visual — nods to the capstone project -->
+        <div class="hero__panel reveal" aria-label="Animated vibration signal and health-index illustration">
+          <div class="scope card">
+            <div class="scope__head mono">
+              <span><span class="led"></span> MOTOR-01 &middot; VIBRATION</span>
+              <span id="scope-fs">fs 1.0 kHz</span>
+            </div>
+            <canvas id="scope-time" class="scope__canvas" height="130"></canvas>
+            <div class="scope__head mono scope__head--sub"><span>FFT &middot; HANN WINDOW</span><span>0 – 500 Hz</span></div>
+            <canvas id="scope-fft" class="scope__canvas" height="110"></canvas>
+            <div class="scope__foot">
+              <div class="hi">
+                <span class="mono hi__label">HEALTH INDEX</span>
+                <div class="hi__bar"><div class="hi__fill" id="hi-fill"></div></div>
+                <span class="mono hi__value" id="hi-value">0.94</span>
+              </div>
+              <span class="mono hi__state" id="hi-state">HEALTHY</span>
+            </div>
+          </div>
+          <p class="scope__caption mono">Illustration inspired by my JPCCED-HI capstone. Signal is simulated.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow mono">01 / About</span>
+          <h2 class="section__title">Hardware-first, by choice</h2>
+        </div>
+        <div class="about">
+          <div class="about__text reveal">
+            <p>
+              I'm completing a <strong>BEng in Computer and Electronic Engineering (NQF 8)</strong> at North-West University,
+              Potchefstroom. The degree covers both software and hardware. I used my final year and my practical work
+              to choose a direction on purpose, and every project and placement pointed the same way:
+              <strong>industrial and hardware systems</strong>.
+            </p>
+            <p>
+              I get the most satisfaction from things I can see and measure. That might be a signal on an oscilloscope, a motor's vibration
+              signature, a PWM duty cycle reacting to a load disturbance, or a network link that either connects or doesn't.
+              Industrial systems fail in ways that matter right away, and finding and preventing those failures is the work
+              I want my career to be about.
+            </p>
+            <p>
+              I'm looking for a <strong>graduate role</strong> in telecommunications, embedded &amp; instrumentation engineering,
+              or industrial control &amp; automation, ideally somewhere I can learn from experienced engineers while
+              contributing from early on.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOCUS AREAS ============ -->
+    <section class="section" id="focus">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow mono">02 / Focus areas</span>
+          <h2 class="section__title">Three fields, one thread</h2>
+          <p class="section__sub">I don't rank these against each other. All three are grounded in physical, industrial systems, and I have hands-on exposure to each one.</p>
+        </div>
+        <div class="pillars">
+          <article class="pillar card reveal" id="pillar-telecom">
+            <div class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20v-8"/><circle cx="12" cy="10" r="2"/><path d="M7.8 14.2a6 6 0 0 1 0-8.4M16.2 5.8a6 6 0 0 1 0 8.4M4.9 17.1a10 10 0 0 1 0-14.2M19.1 2.9a10 10 0 0 1 0 14.2"/></svg>
+            </div>
+            <h3>Telecommunications &amp; Industrial IoT</h3>
+            <p>RF systems, cellular and LoRaWAN connectivity, and the networks behind remote monitoring. This is where I have the most direct industry exposure.</p>
+            <ul class="tags"><li>SIMCom A76xx</li><li>SIM7000/7080G</li><li>SIM7600</li><li>LoRaWAN</li><li>TCP/IP</li><li>RF &amp; antennas</li></ul>
+          </article>
+          <article class="pillar card reveal" id="pillar-embedded">
+            <div class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>
+            </div>
+            <h3>Embedded Systems &amp; Instrumentation</h3>
+            <p>Condition monitoring, sensor interfacing, signal processing and real-time control applied to plant and equipment.</p>
+            <ul class="tags"><li>STM32 / ARM Cortex-M</li><li>Embedded C / C++</li><li>ATmega328P</li><li>FFT / DSP</li><li>ADC &amp; filtering</li><li>PCA</li></ul>
+          </article>
+          <article class="pillar card reveal" id="pillar-control">
+            <div class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>
+            </div>
+            <h3>Industrial Control &amp; Automation</h3>
+            <p>Feedback control, power electronics and, next, PLC/SCADA. My control theory foundation is in place, and I'm eager to add platform-specific industry experience.</p>
+            <ul class="tags"><li>PI / PID design</li><li>Small-signal models</li><li>Buck-boost</li><li>MATLAB Simscape</li><li>PLC / SCADA (developing)</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow mono">03 / Projects</span>
+          <h2 class="section__title">Selected work</h2>
+        </div>
+        <div class="filters reveal" role="tablist" aria-label="Filter projects">
+          <button class="filter is-active" data-filter="all" id="filter-all" role="tab">All</button>
+          <button class="filter" data-filter="embedded" id="filter-embedded" role="tab">Embedded &amp; Control</button>
+          <button class="filter" data-filter="telecom" id="filter-telecom" role="tab">Telecom &amp; IoT</button>
+          <button class="filter" data-filter="software" id="filter-software" role="tab">Software &amp; Data</button>
+        </div>
+
+        <div class="projects">
+          <article class="project card project--feature reveal" data-cat="embedded software" id="project-capstone">
+            <div class="project__visual project__visual--capstone" aria-hidden="true">
+              <svg viewBox="0 0 400 160" preserveAspectRatio="none"><polyline class="wave" points="0,80 20,60 40,95 60,50 80,100 100,70 120,85 140,40 160,110 180,65 200,90 220,55 240,105 260,72 280,88 300,45 320,98 340,66 360,84 380,58 400,80"/></svg>
+              <span class="badge mono">CAPSTONE &middot; 2026</span>
+            </div>
+            <div class="project__body">
+              <h3>Android-Based Condition Monitoring for Induction Motors</h3>
+              <p>A standalone Android app that monitors induction motor vibration on the device in real time. It needs no internet or backend, which matters at remote agricultural and grain-silo sites.</p>
+              <ul class="project__metrics mono">
+                <li><strong>18</strong> time + frequency features</li>
+                <li><strong>7</strong> failure modes diagnosed</li>
+                <li><strong>290–665 ms</strong> on mid-range hardware</li>
+              </ul>
+              <ul class="tags"><li>Kotlin</li><li>C++ / NDK</li><li>FFT</li><li>Hann window</li><li>PCA</li><li>JPCCED-HI</li></ul>
+              <button class="link-btn" data-modal="modal-capstone" id="open-capstone">Read case study →</button>
+            </div>
+          </article>
+
+          <article class="project card reveal" data-cat="embedded" id="project-buckboost">
+            <div class="project__visual project__visual--control" aria-hidden="true">
+              <svg viewBox="0 0 400 160" preserveAspectRatio="none"><polyline class="step" points="0,120 120,120 120,40 400,40"/><polyline class="resp" points="0,120 120,120 135,60 150,32 170,46 190,38 215,42 400,40"/></svg>
+              <span class="badge mono">CONTROL THEORY II &middot; 2025</span>
+            </div>
+            <div class="project__body">
+              <h3>PI-Controlled DC-DC Buck-Boost Converter</h3>
+              <p>Took it from first principles to working hardware: I characterised the components, built a Simscape model, derived the small-signal transfer function and designed a PI controller in embedded C on an Arduino Nano.</p>
+              <ul class="project__metrics mono"><li><strong>30 V → 15 V</strong> induced short-circuit drop</li><li>Setpoint restored with no excessive overshoot</li></ul>
+              <ul class="tags"><li>Embedded C</li><li>PWM</li><li>ADC feedback</li><li>MATLAB Simscape</li></ul>
+              <button class="link-btn" data-modal="modal-buckboost" id="open-buckboost">Read case study →</button>
+            </div>
+          </article>
+
+          <article class="project card reveal" data-cat="embedded" id="project-hoist">
+            <div class="project__visual project__visual--hoist" aria-hidden="true">
+              <svg viewBox="0 0 400 160" preserveAspectRatio="none">
+                <!-- Overhead rail & travel bounds -->
+                <line x1="40" y1="42" x2="360" y2="42" stroke="var(--border-strong)" stroke-width="3" stroke-linecap="round"/>
+                <line x1="50" y1="42" x2="350" y2="42" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="8 6"/>
+                <!-- Travel limit stops -->
+                <line x1="40" y1="34" x2="40" y2="50" stroke="var(--text-faint)" stroke-width="2"/>
+                <line x1="360" y1="34" x2="360" y2="50" stroke="var(--text-faint)" stroke-width="2"/>
+                <!-- Trolley Carriage & Hook -->
+                <g class="hoist-trolley">
+                  <rect x="172" y="30" width="56" height="24" rx="4" fill="hsl(222 40% 16%)" stroke="var(--accent)" stroke-width="1.5"/>
+                  <circle cx="184" cy="42" r="3" fill="var(--accent)"/>
+                  <circle cx="216" cy="42" r="3" fill="var(--accent)"/>
+                  <!-- Vertical Cable & Load Hook -->
+                  <g class="hoist-cable">
+                    <line x1="200" y1="54" x2="200" y2="112" stroke="var(--amber)" stroke-width="2" stroke-dasharray="5 3"/>
+                    <path d="M195 112 Q200 120 205 112 Q205 126 197 129 A6 6 0 0 1 192 123" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/>
+                  </g>
+                </g>
+                <!-- Motion indicators -->
+                <path d="M130 42 L115 42 M122 37 L115 42 L122 47" fill="none" stroke="var(--text-faint)" stroke-width="1.5"/>
+                <path d="M270 42 L285 42 M278 37 L285 42 L278 47" fill="none" stroke="var(--text-faint)" stroke-width="1.5"/>
+                <!-- Telemetry signal pulses -->
+                <g class="hoist-telemetry">
+                  <circle cx="200" cy="42" r="14" fill="none" stroke="var(--accent-2)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <circle cx="200" cy="42" r="24" fill="none" stroke="var(--accent-2)" stroke-width="1" opacity="0.5"/>
+                </g>
+              </svg>
+              <span class="badge mono">DESIGN MODULE &middot; 2025</span>
+            </div>
+            <div class="project__body">
+              <h3>Dual-Axis Hoist Controller &amp; Telemetry</h3>
+              <p>Built the central controller for a motorized hoist in our design module. An STM32 handled 2-axis movement from a wireless remote while reading and streaming live weight and height measurements.</p>
+              <ul class="project__metrics mono">
+                <li><strong>2-axis</strong> lateral + vertical travel</li>
+                <li><strong>Wireless</strong> remote control + E-stop</li>
+                <li><strong>Sensors</strong> weight &amp; height telemetry</li>
+              </ul>
+              <ul class="tags"><li>STM32</li><li>Embedded C</li><li>PWM</li><li>ADC</li><li>State machines</li><li>Limit switches</li></ul>
+              <button class="link-btn" data-modal="modal-hoist" id="open-hoist">Read case study →</button>
+            </div>
+          </article>
+
+          <article class="project card reveal" data-cat="telecom" id="project-otto">
+            <div class="project__visual project__visual--telecom" aria-hidden="true">
+              <svg viewBox="0 0 400 160"><circle cx="200" cy="80" r="6"/><circle class="ring r1" cx="200" cy="80" r="24"/><circle class="ring r2" cx="200" cy="80" r="48"/><circle class="ring r3" cx="200" cy="80" r="72"/></svg>
+              <span class="badge mono">INDUSTRY &middot; 2026</span>
+            </div>
+            <div class="project__body">
+              <h3>Industrial IoT Placement, Otto Wireless Solutions</h3>
+              <p>Five weeks with SIMCom cellular and GNSS modules, LoRaWAN networks and industrial networking hardware, working on module selection, comparison and characterisation.</p>
+              <ul class="tags"><li>SIMCom</li><li>GNSS</li><li>LoRaWAN</li><li>Cloud connectivity</li><li>Tech docs</li></ul>
+              <button class="link-btn" data-modal="modal-otto" id="open-otto">Read case study →</button>
+            </div>
+          </article>
+
+          <article class="project card reveal" data-cat="software" id="project-mybook">
+            <div class="project__visual project__visual--db" aria-hidden="true">
+              <div class="db-grid mono"><span>users</span><span>posts</span><span>comments</span><span>likes{json}</span></div>
+              <span class="badge mono">DISTINCTION 77% &middot; 2025</span>
+            </div>
+            <div class="project__body">
+              <h3>Collaborative Online Interaction System</h3>
+              <p>A social platform built from scratch in PHP, SQL and HTML/CSS with no frameworks. Its normalised MySQL schema was designed so it could grow later.</p>
+              <ul class="tags"><li>PHP</li><li>MySQL</li><li>JSON-in-SQL</li><li>XAMPP</li></ul>
+              <button class="link-btn" data-modal="modal-mybook" id="open-mybook">Read case study →</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow mono">04 / Experience</span>
+          <h2 class="section__title">Where I've worked</h2>
+        </div>
+        <ol class="timeline">
+          <li class="timeline__item reveal">
+            <span class="timeline__date mono">Jun – Jul 2026</span>
+            <div class="card timeline__card">
+              <h3>Vacation Work Trainee</h3>
+              <p class="timeline__org">Otto Wireless Solutions (Pty) Ltd &middot; Randburg</p>
+              <ul>
+                <li>Five-week programme covering IoT, LoRaWAN, RF &amp; wireless technologies, cloud connectivity and industrial networking.</li>
+                <li>Hands-on product development, system integration and creation of technical documentation.</li>
+                <li>Worked under the supervision of the Technical Director.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <span class="timeline__date mono">2024 – 2026</span>
+            <div class="card timeline__card">
+              <h3>Student Assistant</h3>
+              <p class="timeline__org">School of Computer Science &amp; Information Systems, NWU &middot; First semester</p>
+              <ul>
+                <li>Graded tests and assignments, invigilated exams, and captured marks for a C programming module.</li>
+                <li>Helped students with programming queries, which strengthened my ability to explain technical concepts clearly.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <span class="timeline__date mono">2024 – 2026</span>
+            <div class="card timeline__card">
+              <h3>Temporary Assistant</h3>
+              <p class="timeline__org">Mechanical Engineering Department, NWU &middot; First semester</p>
+              <ul>
+                <li>Marked Engineering Graphics assignments in Siemens NX against technical drawing standards.</li>
+                <li>Evaluated CAD models and drawings, giving constructive feedback on engineering design principles.</li>
+                <li>Supported academic and administrative functions within the department.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <span class="timeline__date mono">Ongoing</span>
+            <div class="card timeline__card">
+              <h3>Workshop Facilitator, Engenius Kids</h3>
+              <p class="timeline__org">Engineering outreach &middot; Volunteer</p>
+              <ul>
+                <li>Introduce engineering concepts to Grade 9 learners in township schools through hands-on projects, encouraging them to keep studying Pure Mathematics and Physical Science.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow mono">05 / Education</span>
+          <h2 class="section__title">Academic record</h2>
+        </div>
+        <div class="edu">
+          <div class="card edu__main reveal">
+            <h3>BEng Computer &amp; Electronic Engineering</h3>
+            <p class="timeline__org">North-West University, Potchefstroom &middot; 2022 – 2026 &middot; NQF Level 8</p>
+            <p>552 of 616 credits passed, overall GPA 61.64. My results improved as the work became more hardware-facing.</p>
+            <div class="gpa" id="gpa-chart" aria-label="GPA by year">
+              <div class="gpa__col"><div class="gpa__bar" style="--v:61.07"><span class="mono">61.07</span></div><span class="mono">2022</span></div>
+              <div class="gpa__col"><div class="gpa__bar" style="--v:54.05"><span class="mono">54.05</span></div><span class="mono">2023</span></div>
+              <div class="gpa__col"><div class="gpa__bar" style="--v:60.16"><span class="mono">60.16</span></div><span class="mono">2024</span></div>
+              <div class="gpa__col"><div class="gpa__bar gpa__bar--hi" style="--v:64.06"><span class="mono">64.06</span></div><span class="mono">2025</span></div>
+            </div>
+          </div>
+          <div class="card edu__modules reveal">
+            <h3>Highlighted modules</h3>
+            <ul class="modules">
+              <li><span>Programming for Engineers</span><span class="mono score score--dist">82%</span></li>
+              <li><span>Engineering Communication</span><span class="mono score score--dist">82%</span></li>
+              <li><span>Databases &amp; Web Programming</span><span class="mono score score--dist">77%</span></li>
+              <li><span>Telecommunication Systems</span><span class="mono score">70%</span></li>
+              <li><span>Engineering Graphics I</span><span class="mono score">72%</span></li>
+              <li><span>Basic Physics I</span><span class="mono score">72%</span></li>
+              <li><span>Control Theory II</span><span class="mono score">69%</span></li>
+              <li><span>Embedded Systems</span><span class="mono score">67%</span></li>
+              <li><span>Engineering Statistics</span><span class="mono score">67%</span></li>
+              <li><span>Microcontrollers</span><span class="mono score">66%</span></li>
+              <li><span>Electronics II</span><span class="mono score">65%</span></li>
+              <li><span>Signal Theory II</span><span class="mono score">64%</span></li>
+              <li><span>Network Fundamentals</span><span class="mono score">61%</span></li>
+            </ul>
+            <p class="refs__note mono">Source: NWU academic record, issued 21 July 2026.</p>
+          </div>
+          <div class="card edu__school reveal">
+            <h3>National Senior Certificate</h3>
+            <p class="timeline__org">Victory House Private School &middot; 2016 – 2020 &middot; Bachelor's pass</p>
+            <ul class="tags"><li>Accounting 89%</li><li>Life Sciences 80%</li><li>English 74%</li><li>Mathematics 70%</li><li>Physics 70%</li><li>Afrikaans 70%</li></ul>
+          </div>
+          <div class="card edu__current reveal">
+            <h3><span class="dot dot--green"></span> In progress: final year, 2026</h3>
+            <p class="timeline__org">The last 64 credits toward the 616-credit qualification</p>
+            <ul class="tags"><li>Project (capstone), 24 cr</li><li>Signal Theory III</li><li>Engineering Management</li><li>Engineering Professionalism</li><li>Practical Training Seniors</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow mono">06 / Skills</span>
+          <h2 class="section__title">Toolbox</h2>
+        </div>
+        <div class="skills">
+          <div class="card skill-group reveal">
+            <h3><span class="dot dot--amber"></span>Embedded &amp; Microcontrollers</h3>
+            <ul class="tags">
+              <li>STM32 (ARM Cortex-M)</li>
+              <li>Microcontrollers (MCUs)</li>
+              <li>Embedded C / C++</li>
+              <li>UART, SPI &amp; I2C</li>
+              <li>ADC &amp; PWM</li>
+              <li>CANbus</li>
+              <li>ATmega328P / Arduino</li>
+              <li>Interrupts &amp; state machines</li>
+            </ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3><span class="dot dot--cyan"></span>Telecom &amp; RF</h3>
+            <ul class="tags">
+              <li>SIMCom A76xx / SIM7000 / 7080G / 7600</li>
+              <li>Cellular &amp; GNSS</li>
+              <li>LoRaWAN</li>
+              <li>Cisco networking (TCP/IP)</li>
+              <li>Bluetooth Low Energy (BLE)</li>
+              <li>RF &amp; antenna fundamentals</li>
+            </ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3><span class="dot dot--rose"></span>Electronics &amp; Lab</h3>
+            <ul class="tags">
+              <li>LTspice</li>
+              <li>Oscilloscope &amp; logic analyzer</li>
+              <li>Multimeter &amp; bench power supplies</li>
+              <li>Soldering &amp; prototype wiring</li>
+              <li>PI / PID tuning</li>
+              <li>Buck-boost converters</li>
+              <li>RC anti-aliasing &amp; Zener protection</li>
+            </ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3><span class="dot dot--green"></span>Software &amp; Data</h3>
+            <ul class="tags">
+              <li>Object-oriented design (OOD)</li>
+              <li>C / C++</li>
+              <li>Git</li>
+              <li>Kotlin / Java</li>
+              <li>SQL / MySQL</li>
+              <li>PHP</li>
+              <li>HTML / CSS</li>
+            </ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3><span class="dot dot--violet"></span>Tools &amp; Simulation</h3>
+            <ul class="tags">
+              <li>Siemens NX</li>
+              <li>MATLAB / Simscape</li>
+              <li>LTspice</li>
+              <li>Serial debugging</li>
+              <li>Technical documentation</li>
+              <li>Formal engineering reports</li>
+            </ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3><span class="dot dot--slate"></span>Signal Processing</h3>
+            <ul class="tags">
+              <li>FFT vibration analysis</li>
+              <li>Hann windowing</li>
+              <li>JPCCED-HI health index</li>
+              <li>PCA condition monitoring</li>
+              <li>Moving-average filters</li>
+              <li>Predictive maintenance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REFERENCES ============ -->
+    <section class="section section--tight" id="references">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow mono">07 / References</span>
+          <h2 class="section__title">References</h2>
+        </div>
+        <div class="refs">
+          <div class="card ref reveal"><h3>Dr Rodney Sebopelo</h3><p>Senior Lecturer, North-West University</p></div>
+          <div class="card ref reveal"><h3>Miyelani Kubayi</h3><p>Technical Director, Otto Wireless Solutions (Pty) Ltd</p></div>
+        </div>
+        <p class="refs__note mono">Contact details available on request.</p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact card reveal">
+          <div class="contact__text">
+            <span class="eyebrow mono">08 / Contact</span>
+            <h2 class="section__title">Let's talk engineering</h2>
+            <div class="contact__rows">
+              <div class="contact__row">
+                <a href="mailto:mitchellgondwe7@gmail.com" class="mono" id="contact-email">mitchellgondwe7@gmail.com</a>
+                <button class="copy-btn" data-copy="mitchellgondwe7@gmail.com" id="copy-email" aria-label="Copy email">Copy</button>
+              </div>
+              <div class="contact__row">
+                <a href="tel:+27730675488" class="mono" id="contact-phone">+27 73 067 5488</a>
+                <button class="copy-btn" data-copy="+27 73 067 5488" id="copy-phone" aria-label="Copy phone number">Copy</button>
+              </div>
+            </div>
+          </div>
+          <form class="contact__form" id="contact-form" novalidate>
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" />
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email" />
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="4" required></textarea>
+            <button class="btn btn--primary" type="submit" id="cf-submit">Open in email app</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner mono">
+      <span>&copy; <span id="year"></span> Mitchell Gondwe</span>
+      <a href="#hero" id="back-to-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- ============ MODALS ============ -->
+  <dialog class="modal" id="modal-capstone" aria-labelledby="mc-title">
+    <button class="modal__close" aria-label="Close">&times;</button>
+    <span class="eyebrow mono">BEng mini-dissertation &middot; NWU &middot; 2026</span>
+    <h3 id="mc-title">Android-Based Condition Monitoring for Induction Motors</h3>
+    <p>Real-time, vibration-based condition monitoring of induction motors at grain silo facilities, running fully on an Android device with no internet connectivity or backend infrastructure.</p>
+    <h4>How it works</h4>
+    <ul>
+      <li><strong>JPCCED-HI</strong> (Joint Principal Component Cumulative Empirical Distribution Health Index) reduces a motor's vibration signature to a single health score between 0 and 1.</li>
+      <li>It extracts <strong>18 time- and frequency-domain features</strong> and applies PCA to classify motor condition and diagnose <strong>one of seven failure modes</strong>.</li>
+      <li>A <strong>hybrid Kotlin + C++ (NDK)</strong> architecture runs the heavy DSP (FFT, Hann windowing, feature extraction) in C++, achieving <strong>290–665 ms</strong> execution on mid-range hardware.</li>
+    </ul>
+    <h4>Why this method</h4>
+    <p>It only needs data from <em>healthy</em> machines to build a baseline. That matters because most industrial sites, including the target facility, don't have a library of past failures.</p>
+    <h4>Status</h4>
+    <p>Next comes physical lab validation against real motor vibration data, alongside a formal engineering report covering the literature study, design, implementation and evaluation.</p>
+  </dialog>
+
+  <dialog class="modal" id="modal-buckboost" aria-labelledby="mb-title">
+    <button class="modal__close" aria-label="Close">&times;</button>
+    <span class="eyebrow mono">Control Theory II practical &middot; 2025 &middot; Module 69%</span>
+    <h3 id="mb-title">PI-Controlled DC-DC Buck-Boost Converter</h3>
+    <p>I designed, simulated, built and tested a closed-loop buck-boost converter that holds a stable output voltage through sudden short-circuit disturbances.</p>
+    <ul>
+      <li>Characterised the hardware components, then built and validated a MATLAB Simscape model.</li>
+      <li>Derived the small-signal transfer function and designed a PI controller from it.</li>
+      <li>Implemented the controller on an Arduino Nano in embedded C: PWM generation, ADC voltage feedback with digital filtering, and fault protection.</li>
+      <li>Hardware design included voltage dividers, RC anti-aliasing filters and Zener protection.</li>
+      <li>In testing, I induced a short-circuit load drop (30 V → 15 V). The controller adjusted the duty cycle and restored the setpoint without excessive overshoot.</li>
+    </ul>
+    <p>What I valued most was connecting control theory directly to real hardware behaviour.</p>
+  </dialog>
+
+  <dialog class="modal" id="modal-hoist" aria-labelledby="mh-title">
+    <button class="modal__close" aria-label="Close">&times;</button>
+    <span class="eyebrow mono">Computer Engineering Design &middot; NWU &middot; 2025</span>
+    <h3 id="mh-title">Dual-Axis Hoist Controller &amp; Telemetry (STM32)</h3>
+    <p>For our Computer Engineering Design module, I designed and built the main controller board and firmware for an automated hoist system. The hoist had to move in two directions (side-to-side along a rail and vertical lift), respond to a handheld wireless remote, and constantly stream back weight and height data.</p>
+    <h4>What I built</h4>
+    <ul>
+      <li><strong>Two-axis motor drive:</strong> Configured STM32 hardware timers for PWM speed control and GPIO direction switching on both motors, with limit switches on each axis to prevent mechanical overrun.</li>
+      <li><strong>Wireless remote control:</strong> Decoded commands from a handheld remote over an interrupt-driven serial receiver to manage movement and trigger an instant emergency stop.</li>
+      <li><strong>Live telemetry &amp; instrumentation:</strong> Sampled an analog load cell through the STM32's ADC to measure suspended weight, read a height sensor to track lift position, and streamed both readings back over serial for operator monitoring.</li>
+      <li><strong>Firmware architecture:</strong> Wrote the firmware in C using an interrupt-driven state machine so time-critical tasks (limit checks and PWM updates) never got blocked by telemetry or serial operations.</li>
+    </ul>
+    <h4>What I took away</h4>
+    <p>Moving from basic 8-bit chips to a 32-bit ARM Cortex-M micro was a big step up. Getting PWM motor driving, ADC sensor acquisition, and wireless serial communication running smoothly together taught me a lot about timer peripherals, interrupts, and practical hardware debugging on the bench.</p>
+  </dialog>
+
+  <dialog class="modal" id="modal-otto" aria-labelledby="mo-title">
+    <button class="modal__close" aria-label="Close">&times;</button>
+    <span class="eyebrow mono">Otto Wireless Solutions &middot; Randburg &middot; Jun – Jul 2026</span>
+    <h3 id="mo-title">Industrial IoT Vacation Work</h3>
+    <ul>
+      <li>Worked with SIMCom cellular and GNSS modules: A76xx, SIM7000/7080G and SIM7600 series.</li>
+      <li>Selected, compared and characterised modules across several SIMCom product families.</li>
+      <li>Got hands-on exposure to RF and antenna fundamentals in an industrial IoT context.</li>
+      <li>Saw how cellular and LoRaWAN connectivity is actually deployed in remote-monitoring settings.</li>
+      <li>Supported product development and system integration, and wrote technical documentation.</li>
+    </ul>
+    <p>The placement confirmed that I want to go deep into telecoms and IoT hardware, at the layer below the application where RF, antenna and network-reliability decisions are made.</p>
+  </dialog>
+
+  <dialog class="modal" id="modal-mybook" aria-labelledby="mm-title">
+    <button class="modal__close" aria-label="Close">&times;</button>
+    <span class="eyebrow mono">Databases &amp; Web Programming &middot; 2025 &middot; 77% Distinction</span>
+    <h3 id="mm-title">Collaborative Online Interaction System</h3>
+    <p>A working social platform built entirely from scratch in PHP, SQL and HTML/CSS (XAMPP/phpMyAdmin), with no external frameworks or plugins.</p>
+    <h4>Schema: <code>mybook</code></h4>
+    <ul>
+      <li><code>users</code>: profiles, credentials, profile and cover images, interaction metrics.</li>
+      <li><code>posts</code>: text and media content with a foreign key to user, like/comment counters and timestamps.</li>
+      <li><code>comments</code>: threaded replies linked by post ID and user ID.</li>
+      <li><code>likes</code>: a JSON-based table that tracks likes on posts and profiles without many-to-many joins.</li>
+    </ul>
+    <p>Designed so notifications, messaging and topic tags could be added without a redesign. These skills carry over directly to SCADA historians and remote-monitoring dashboards.</p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ============ PRINT-ONLY CV ============ -->
+  <section class="print-cv" aria-hidden="true">
+    <header>
+      <h1>Mitchell Gondwe</h1>
+      <p class="pc-role">BEng Computer and Electronic Engineering (Final Year), North-West University</p>
+      <p class="pc-contact">mitchellgondwe7@gmail.com &nbsp;|&nbsp; +27 73 067 5488 &nbsp;|&nbsp; Roodepoort, Gauteng</p>
+    </header>
+    <h2>Profile</h2>
+    <p>Final-year Computer and Electronic Engineering (BEng) student at North-West University with hands-on experience bridging embedded firmware, hardware instrumentation, and wireless systems. Practical background spanning C/C++ development on STM32 microcontrollers, peripheral interfacing (UART, SPI, I2C, ADC), and bench testing with oscilloscopes, logic analyzers, and LTspice, alongside industry exposure to cellular IoT, GNSS, and LoRaWAN. Driven by a disciplined approach to physical debugging, hardware bring-up, and taking systems from schematic to verified, reliable operation.</p>
+    <h2>Experience</h2>
+    <div class="pc-item"><strong>Vacation Work Trainee</strong>, Otto Wireless Solutions (Pty) Ltd, Randburg <span>Jun – Jul 2026</span>
+      <ul><li>Five-week programme: IoT, LoRaWAN, RF &amp; wireless, cloud connectivity, industrial networking.</li><li>Worked with SIMCom A76xx, SIM7000/7080G and SIM7600 modules; product development, system integration, technical documentation.</li></ul></div>
+    <div class="pc-item"><strong>Student Assistant</strong>, School of Computer Science &amp; IS, NWU <span>2024 – 2026</span>
+      <ul><li>Graded, invigilated and captured marks for a C programming module; supported students with programming queries.</li></ul></div>
+    <div class="pc-item"><strong>Temporary Assistant</strong>, Mechanical Engineering Department, NWU <span>2024 – 2026</span>
+      <ul><li>Marked Engineering Graphics assignments in Siemens NX; evaluated CAD models and technical drawings.</li></ul></div>
+    <h2>Projects</h2>
+    <div class="pc-item"><strong>Dual-Axis Hoist Controller &amp; Telemetry (STM32)</strong>, Computer Engineering Design <span>2025</span>
+      <ul><li>Built an STM32-based controller managing 2-axis motorized motion (lateral and vertical) from a wireless remote.</li><li>Integrated load cell weight (ADC) and height telemetry with safety limit-switch interlocks and interrupt-driven C firmware.</li></ul></div>
+    <div class="pc-item"><strong>Android-Based Condition Monitoring for Induction Motors</strong>, BEng mini-dissertation <span>2026</span>
+      <ul><li>On-device JPCCED-HI health index: 18 time/frequency features, PCA, diagnoses one of seven failure modes.</li><li>Hybrid Kotlin + C++ (NDK) DSP pipeline (FFT, Hann windowing): 290–665 ms on mid-range hardware.</li></ul></div>
+    <div class="pc-item"><strong>PI-Controlled DC-DC Buck-Boost Converter</strong>, Control Theory II <span>2025</span>
+      <ul><li>Simscape model, small-signal PI design, embedded C on Arduino Nano; recovered from a 30 V → 15 V short-circuit drop.</li></ul></div>
+    <div class="pc-item"><strong>Collaborative Online Interaction System</strong>, PHP/MySQL, 77% Distinction <span>2025</span>
+      <ul><li>Framework-free full-stack platform with normalised four-table schema and JSON-based likes table.</li></ul></div>
+    <h2>Education</h2>
+    <div class="pc-item"><strong>BEng Computer and Electronic Engineering</strong>, North-West University <span>2022 – 2026</span>
+      <ul><li>552/616 credits passed; GPA 61.64 (2025: 64.06). Databases &amp; Web Programming 77%, Telecommunication Systems 70%, Control Theory II 69%, Signal Theory II 64%.</li><li>2026 in progress: Project, Signal Theory III, Engineering Management, Engineering Professionalism, Practical Training.</li></ul></div>
+    <div class="pc-item"><strong>National Senior Certificate (Bachelor's Pass)</strong>, Victory House Private School <span>2016 – 2020</span></div>
+    <h2>Skills</h2>
+    <p><strong>Microcontrollers &amp; Firmware:</strong> STM32 (ARM Cortex-M), ATmega328P, Embedded C/C++, UART, SPI, I2C, ADC, PWM, CANbus, hardware timers, interrupts, state machines. <strong>Electronics &amp; Lab:</strong> LTspice, oscilloscope, logic analyzer, multimeter, bench power supply, soldering &amp; prototype wiring, buck-boost converters, PI/PID control. <strong>Telecom &amp; IoT:</strong> SIMCom cellular (GSM/LTE) &amp; GNSS, LoRaWAN, BLE, Cisco networking (TCP/IP), RF &amp; antenna fundamentals. <strong>Software &amp; Tools:</strong> Object-oriented design (OOD), Git, Siemens NX, MATLAB / Simscape, Kotlin, C++ (NDK), SQL.</p>
+    <h2>Other</h2>
+    <p>Workshop facilitator, Engenius Kids (engineering outreach for Grade 9 learners). Languages: English (fluent), Afrikaans (intermediate). References available on request.</p>
+  </section>
+
+  <script src="./app.js"></script>
+</body>
+</html>

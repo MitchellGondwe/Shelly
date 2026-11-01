@@ -1,0 +1,7 @@
+# Private documents - never publish
+LATEST ACADEMIC RECORD.pdf
+Career_Interest_Writeup_Improved_BACKUP.docx
+*.docx
+
+# Netlify upload copy (not needed in the repo)
+website-upload/
